@@ -1,0 +1,59 @@
+name: Claude Code
+
+on:
+  workflow_call:
+    inputs:
+      trigger_phrase:
+        description: "Phrase to trigger the agent"
+        type: string
+        default: "@claude"
+      timeout_minutes:
+        description: "Maximum runtime in minutes"
+        type: number
+        default: 30
+      allowed_users:
+        description: "Comma-separated list of GitHub usernames allowed to trigger (empty = anyone with repo access)"
+        type: string
+        default: "dwmkerr"
+    secrets:
+      anthropic_api_key:
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: read
+  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.issue.number || github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  claude:
+    if: |
+      (
+        inputs.allowed_users == '' ||
+        contains(inputs.allowed_users, github.event.sender.login)
+      ) && (
+        (github.event_name == 'issue_comment' && contains(github.event.comment.body, inputs.trigger_phrase)) ||
+        (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, inputs.trigger_phrase)) ||
+        (github.event_name == 'pull_request_review' && contains(github.event.review.body, inputs.trigger_phrase)) ||
+        (github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'claude')) ||
+        (github.event_name == 'issues' && contains(github.event.issue.body, inputs.trigger_phrase))
+      )
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ inputs.timeout_minutes }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Run Claude Code
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.anthropic_api_key }}
+          trigger_phrase: ${{ inputs.trigger_phrase }}
