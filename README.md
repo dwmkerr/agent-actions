@@ -36,6 +36,11 @@ The caller workflow can override defaults:
 | `timeout_minutes` | `30` | Max runtime per invocation |
 | `allowed_users` | `dwmkerr` | Comma-separated GitHub usernames |
 
+## Examples
+
+- Create an issue with the `claude` label: [example issue](https://github.com/dwmkerr/agent-actions/issues/1)
+- Comment `@claude` on a PR: [example PR](https://github.com/dwmkerr/agent-actions/pull/2)
+
 ## Requirements
 
 - `ANTHROPIC_API_KEY` secret in each repo (or set at org level)
