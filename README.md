@@ -1,6 +1,6 @@
 # agent-actions
 
-[![Agent Actions - Running](https://img.shields.io/badge/Agent_Actions-Running-blue?logo=github-actions&logoColor=white)](https://github.com/dwmkerr/agent-actions/actions/workflows/agent-actions.yml)
+[![Agent Actions - Running](https://img.shields.io/badge/Agent_Actions-Running-green?logo=github-actions&logoColor=white)](https://github.com/dwmkerr/agent-actions/actions/workflows/agent-actions.yml)
 
 Reusable GitHub Actions workflow for running AI agents (currently Claude Code) across repos. Define the agent configuration once here, call it from any repo with a thin workflow file.
 
@@ -15,7 +15,7 @@ Reusable GitHub Actions workflow for running AI agents (currently Claude Code) a
 Add this badge to your README to show that agent actions are configured:
 
 ```markdown
-[![Agent Actions - Running](https://img.shields.io/badge/Agent_Actions-Running-blue?logo=github-actions&logoColor=white)](https://github.com/{owner}/{repo}/actions/workflows/agent-actions.yml)
+[![Agent Actions - Running](https://img.shields.io/badge/Agent_Actions-Running-green?logo=github-actions&logoColor=white)](https://github.com/{owner}/{repo}/actions/workflows/agent-actions.yml)
 ```
 
 Replace `{owner}/{repo}` with your repository path.
