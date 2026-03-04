@@ -60,7 +60,7 @@ By default the agent uses the automatic `GITHUB_TOKEN` and appears as **github-a
 
 ## Examples
 
-- [Demo issue](https://github.com/dwmkerr/agent-actions/issues/8) — triggered by the `claude` label
+- [Demo: bug fix](https://github.com/dwmkerr/agent-actions/issues/9) — agent triages a bug and opens a PR
 
 ## Requirements
 
