@@ -64,10 +64,18 @@ To use a specific identity (e.g., a dedicated bot account), pass a Personal Acce
 
 To limit scope, reduce the `permissions` block in the reusable workflow or use a fine-grained PAT with minimal permissions.
 
+## What the Agent Can Do
+
+- **Comment on issues and PRs** — respond to questions, explain code, suggest fixes
+- **Read and review pull requests** — analyze diffs, leave review comments, approve/request changes
+- **Push commits** — make code changes directly on branches
+
+See the [claude-code-action docs](https://github.com/anthropics/claude-code-action) for the full list of capabilities and configuration options.
+
 ## Examples
 
 - Create an issue with the `claude` label: [example issue](https://github.com/dwmkerr/agent-actions/issues/1)
-- Comment `@claude` on a PR: [example PR](https://github.com/dwmkerr/agent-actions/pull/2)
+- Comment `@claude` on a PR: [demo PR](https://github.com/dwmkerr/agent-actions/pull/2) — try commenting `@claude describe the changes in this PR`
 
 ## Requirements
 
