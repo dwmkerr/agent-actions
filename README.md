@@ -48,10 +48,19 @@ The caller workflow can override defaults:
 | `timeout_minutes` | `30` | Max runtime per invocation |
 | `allowed_users` | `dwmkerr` | Comma-separated GitHub usernames |
 
+## Agent Identity
+
+By default the agent uses the automatic `GITHUB_TOKEN` and appears as **github-actions bot**. To use a custom identity, pass `github_token`, `bot_name`, and `bot_id` — see [claude-code-action docs](https://github.com/anthropics/claude-code-action).
+
+## Capabilities
+
+- Comment on issues and PRs, review code, suggest fixes
+- Read diffs, leave review comments, approve/request changes
+- Push commits directly on branches
+
 ## Examples
 
-- Create an issue with the `claude` label: [example issue](https://github.com/dwmkerr/agent-actions/issues/1)
-- Comment `@claude` on a PR: [example PR](https://github.com/dwmkerr/agent-actions/pull/2)
+- [Demo: bug fix](https://github.com/dwmkerr/agent-actions/issues/9) — agent triages a bug and opens a PR
 
 ## Requirements
 
