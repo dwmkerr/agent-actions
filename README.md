@@ -48,6 +48,22 @@ The caller workflow can override defaults:
 | `timeout_minutes` | `30` | Max runtime per invocation |
 | `allowed_users` | `dwmkerr` | Comma-separated GitHub usernames |
 
+## Important: Agent Identity
+
+By default, the agent operates using the automatic `GITHUB_TOKEN` — which means commits and API calls appear as the **github-actions bot**, scoped to the triggering repo. It does _not_ run as your personal account, but it does have the permissions granted in the workflow (`contents: write`, `pull-requests: write`, `issues: write`).
+
+To use a specific identity (e.g., a dedicated bot account), pass a Personal Access Token or GitHub App token as `github_token`, and set `bot_name`/`bot_id` to match:
+
+```yaml
+- uses: anthropics/claude-code-action@v1
+  with:
+    github_token: ${{ secrets.MY_BOT_PAT }}
+    bot_name: "my-bot"
+    bot_id: "12345678"
+```
+
+To limit scope, reduce the `permissions` block in the reusable workflow or use a fine-grained PAT with minimal permissions.
+
 ## Examples
 
 - Create an issue with the `claude` label: [example issue](https://github.com/dwmkerr/agent-actions/issues/1)
