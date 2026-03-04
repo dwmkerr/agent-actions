@@ -48,34 +48,19 @@ The caller workflow can override defaults:
 | `timeout_minutes` | `30` | Max runtime per invocation |
 | `allowed_users` | `dwmkerr` | Comma-separated GitHub usernames |
 
-## Important: Agent Identity
+## Agent Identity
 
-By default, the agent operates using the automatic `GITHUB_TOKEN` — which means commits and API calls appear as the **github-actions bot**, scoped to the triggering repo. It does _not_ run as your personal account, but it does have the permissions granted in the workflow (`contents: write`, `pull-requests: write`, `issues: write`).
+By default the agent uses the automatic `GITHUB_TOKEN` and appears as **github-actions bot**. To use a custom identity, pass `github_token`, `bot_name`, and `bot_id` — see [claude-code-action docs](https://github.com/anthropics/claude-code-action).
 
-To use a specific identity (e.g., a dedicated bot account), pass a Personal Access Token or GitHub App token as `github_token`, and set `bot_name`/`bot_id` to match:
+## Capabilities
 
-```yaml
-- uses: anthropics/claude-code-action@v1
-  with:
-    github_token: ${{ secrets.MY_BOT_PAT }}
-    bot_name: "my-bot"
-    bot_id: "12345678"
-```
-
-To limit scope, reduce the `permissions` block in the reusable workflow or use a fine-grained PAT with minimal permissions.
-
-## What the Agent Can Do
-
-- **Comment on issues and PRs** — respond to questions, explain code, suggest fixes
-- **Read and review pull requests** — analyze diffs, leave review comments, approve/request changes
-- **Push commits** — make code changes directly on branches
-
-See the [claude-code-action docs](https://github.com/anthropics/claude-code-action) for the full list of capabilities and configuration options.
+- Comment on issues and PRs, review code, suggest fixes
+- Read diffs, leave review comments, approve/request changes
+- Push commits directly on branches
 
 ## Examples
 
-- Create an issue with the `claude` label: [example issue](https://github.com/dwmkerr/agent-actions/issues/1)
-- Comment `@claude` on a PR: [demo PR](https://github.com/dwmkerr/agent-actions/pull/2) — try commenting `@claude describe the changes in this PR`
+- [Demo issue](https://github.com/dwmkerr/agent-actions/issues/8) — triggered by the `claude` label
 
 ## Requirements
 
