@@ -17,8 +17,12 @@ jobs:
     uses: dwmkerr/agent-actions/.github/workflows/claude.yml@main
     secrets:
       anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+      # Optional: PAT for a custom bot identity (otherwise defaults to github-actions bot)
+      # github_token: ${{ secrets.MY_BOT_TOKEN }}
     # Uncomment to override defaults:
     # with:
     #   trigger_phrase: "@claude"
     #   timeout_minutes: 30
     #   allowed_users: "dwmkerr"
+    #   bot_name: "my-bot"
+    #   bot_id: "123456"

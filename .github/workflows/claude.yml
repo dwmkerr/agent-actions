@@ -15,9 +15,20 @@ on:
         description: "Comma-separated list of GitHub usernames allowed to trigger (empty = anyone with repo access)"
         type: string
         default: "dwmkerr"
+      bot_name:
+        description: "GitHub username the agent posts as (requires github_token secret)"
+        type: string
+        default: ""
+      bot_id:
+        description: "GitHub numeric user ID matching bot_name (requires github_token secret)"
+        type: string
+        default: ""
     secrets:
       anthropic_api_key:
         required: true
+      github_token:
+        description: "PAT for a custom bot identity. If unset, defaults to GITHUB_TOKEN (github-actions bot)"
+        required: false
 
 permissions:
   contents: write
@@ -57,3 +68,6 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.anthropic_api_key }}
           trigger_phrase: ${{ inputs.trigger_phrase }}
+          github_token: ${{ secrets.github_token }}
+          bot_name: ${{ inputs.bot_name }}
+          bot_id: ${{ inputs.bot_id }}
