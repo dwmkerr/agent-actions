@@ -14,5 +14,9 @@ on:
 jobs:
   claude:
     uses: dwmkerr/agent-actions/.github/workflows/claude.yml@main
+    with:
+      bot_name: "dwmkerr-agent"
+      bot_id: "246517607"
     secrets:
       anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+      github_token: ${{ secrets.DWMKERR_AGENT_TOKEN }}
