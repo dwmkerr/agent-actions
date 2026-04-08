@@ -36,7 +36,7 @@ The agent responds to:
 
 - **`@claude` in comments** — issue comments, PR review comments, PR reviews
 - **`claude` label** — added to an issue
-- **`@claude` in issue body** — when an issue is opened
+- **`@claude` in issue body or title** — when an issue is opened or edited
 
 ## Configuration
 

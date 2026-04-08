@@ -9,7 +9,7 @@ on:
   pull_request_review:
     types: [submitted]
   issues:
-    types: [opened, labeled]
+    types: [opened, edited, labeled]
 
 jobs:
   claude:
