@@ -26,7 +26,7 @@ on:
     secrets:
       anthropic_api_key:
         required: true
-      github_token:
+      bot_token:
         description: "PAT for a custom bot identity. If unset, defaults to GITHUB_TOKEN (github-actions bot)"
         required: false
 
@@ -68,6 +68,6 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.anthropic_api_key }}
           trigger_phrase: ${{ inputs.trigger_phrase }}
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ secrets.bot_token }}
           bot_name: ${{ inputs.bot_name }}
           bot_id: ${{ inputs.bot_id }}

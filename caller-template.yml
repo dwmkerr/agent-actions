@@ -18,7 +18,7 @@ jobs:
     secrets:
       anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
       # Optional: PAT for a custom bot identity (otherwise defaults to github-actions bot)
-      # github_token: ${{ secrets.MY_BOT_TOKEN }}
+      # bot_token: ${{ secrets.MY_BOT_TOKEN }}
     # Uncomment to override defaults:
     # with:
     #   trigger_phrase: "@claude"
