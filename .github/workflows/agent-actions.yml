@@ -19,4 +19,4 @@ jobs:
       bot_id: "246517607"
     secrets:
       anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-      github_token: ${{ secrets.DWMKERR_AGENT_TOKEN }}
+      bot_token: ${{ secrets.DWMKERR_AGENT_TOKEN }}
