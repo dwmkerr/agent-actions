@@ -16,11 +16,11 @@ on:
         type: string
         default: "dwmkerr"
       bot_name:
-        description: "GitHub username the agent posts as (requires github_token secret)"
+        description: "GitHub username used for git commits (default: github-actions[bot])"
         type: string
         default: ""
       bot_id:
-        description: "GitHub numeric user ID matching bot_name (requires github_token secret)"
+        description: "GitHub numeric user ID matching bot_name (default: 41898282, the github-actions[bot] ID)"
         type: string
         default: ""
     secrets:
@@ -69,5 +69,13 @@ jobs:
           anthropic_api_key: ${{ secrets.anthropic_api_key }}
           trigger_phrase: ${{ inputs.trigger_phrase }}
           github_token: ${{ secrets.bot_token }}
-          bot_name: ${{ inputs.bot_name }}
-          bot_id: ${{ inputs.bot_id }}
+          # Fall back to the github-actions[bot] identity when the caller
+          # doesn't supply one. Empty strings get forwarded to the action
+          # and override its own defaults, which makes `git config user.name ""`
+          # fail at the configureGitAuth step. The `|| default` pattern means
+          # an unset caller input resolves to the fallback instead of "".
+          # 41898282 is the stable GitHub user ID for github-actions[bot];
+          # it's hardcoded because GitHub App installation tokens can't
+          # query the /user endpoint to resolve it at runtime (claude-code-action #534).
+          bot_name: ${{ inputs.bot_name || 'github-actions[bot]' }}
+          bot_id: ${{ inputs.bot_id || '41898282' }}
